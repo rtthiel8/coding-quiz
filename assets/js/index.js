@@ -86,16 +86,20 @@ function showQuestion(){
     var questionEl = document.createElement("p");
     questionEl.innerText = currentquestion.question;
     document.getElementById('quiz').appendChild(questionEl);
+    var temporaryIndex = 0
     for (var answers of Object.values(currentquestion.answers)) {
         console.log(answers);
     var answersEl = document.createElement("button");
-    answersEl.id = "next";
+    answersEl.id = temporaryIndex;
     document.getElementById('quiz').appendChild(answersEl)
     answersEl.innerText = answers;
-    questionNumber ++;   
-   }
+    temporaryIndex++;
+    answersEl.addEventListener("click", showQuestion);
+    questionNumber ++;
+    //document.getElementById("answersEl").style.display = 'none';
+    }
 };
 
-document.getElementById('next').addEventListener('click', showQuestion);
+
 
 
