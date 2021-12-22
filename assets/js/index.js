@@ -1,9 +1,8 @@
 document.getElementById('start').addEventListener('click', startQuiz);
-//document.getElementById('start').addEventListener('click', showQuestion);
+document.getElementById('start').addEventListener('click', showQuestion);
 
-//var quizContainer = document.getElementById('quiz');
-
-
+var quizEl = document.getElementById('quiz')
+var questionNumber = 0
 
 var quizQuestions = [
     {
@@ -82,13 +81,14 @@ function startQuiz() {
     document.getElementById('question').style.display = 'block';
 }
 
-//function showQuestion () {
+function showQuestion(){
+    var questionEl = document.createElement("p");
+    questionEl.innerText = "";
+    document.getElementById('quiz').appendChild(questionEl);
+    for (var answers in quizQuestions) {
+        console.log('${questions}: ${question[answers]}');
+    }
+};
 
-//var output = [];
+console.log(quizQuestions);
 
-//quizQuestions.forEach(
-    //(currentQuestion, questionNumber) => {
-
-        //var answers = [];
-
-        //for(number in currentQuestion.answers){
