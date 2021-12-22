@@ -82,13 +82,16 @@ function startQuiz() {
 }
 
 function showQuestion(){
+    var currentquestion = quizQuestions[questionNumber]
     var questionEl = document.createElement("p");
-    questionEl.innerText = "";
+    questionEl.innerText = currentquestion.question;
     document.getElementById('quiz').appendChild(questionEl);
-    for (var answers in quizQuestions) {
-        console.log('${questions}: ${question[answers]}');
+    for (var answers of Object.values(currentquestion.answers)) {
+        console.log(answers);
+    var answersEl = document.createElement("button")
+    document.getElementById('quiz').appendChild(answersEl)
+    answersEl.innerText = currentquestion.answers;
+        
     }
 };
-
-console.log(quizQuestions);
 
