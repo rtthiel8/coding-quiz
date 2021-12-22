@@ -88,10 +88,14 @@ function showQuestion(){
     document.getElementById('quiz').appendChild(questionEl);
     for (var answers of Object.values(currentquestion.answers)) {
         console.log(answers);
-    var answersEl = document.createElement("button")
+    var answersEl = document.createElement("button");
+    answersEl.id = "next";
     document.getElementById('quiz').appendChild(answersEl)
-    answersEl.innerText = currentquestion.answers;
-        
-    }
+    answersEl.innerText = answers;
+    questionNumber ++;   
+   }
 };
+
+document.getElementById('next').addEventListener('click', showQuestion);
+
 
