@@ -14,6 +14,10 @@ button {
     width: 200px;
 }
 
+button:active {
+    background-color: cornflowerblue;
+}
+
 #clock {
     width: 80px;
     margin: 0 auto;
@@ -32,3 +36,4 @@ p {
     font-size: 25px;
     margin: 5px;
 }
+

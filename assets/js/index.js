@@ -5,8 +5,8 @@ document.getElementById('answersEl');
 
 var quizEl = document.getElementById('quiz')
 var questionNumber = -1
+var score = 0
 
-// array qith quiz questions
 var quizQuestions = [
     {
         question: "Commonly used data types DO NOT include:",
@@ -69,6 +69,7 @@ var quizQuestions = [
         correctAnswer: "for"
     },
 ];
+console.log(quizQuestions);
 
 function startTimer(duration, display) {
 var timer = duration, seconds;
@@ -99,17 +100,17 @@ function showQuestion(){
     quizEl.innerText = "";
 
     
-    var currentquestion = quizQuestions[questionNumber];
+    var currentQuestion = quizQuestions[questionNumber];
     var questionEl = document.createElement("p");
-    questionEl.innerText = currentquestion.question;
+    questionEl.innerText = currentQuestion.question;
     
     document.getElementById('quiz').appendChild(questionEl);
     
     var temporaryIndex = 0;
-    for (var answers of Object.values(currentquestion.answers)) {
+    for (var answers of Object.values(currentQuestion.answers)) {
         //console.log(answers);
-    for (var correctAnswer of Object.values(currentquestion.correctAnswer))    
-        console.log(correctAnswer);
+    for (var correctAnswer of Object.values(currentQuestion.correctAnswer))    
+        console.log(currentQuestion.correctAnswer);
     var answersEl = document.createElement("button");
     answersEl.id = temporaryIndex;
     document.getElementById('quiz').appendChild(answersEl)
@@ -119,6 +120,12 @@ function showQuestion(){
     }
 };
 
-
+function checkAnswer() {
+    if (answersEl.innertext == currentQuestion.correctAnswer) {
+    score++;
+    } else {
+    timer = -10;
+    }
+};
 
 
