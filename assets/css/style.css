@@ -9,8 +9,9 @@ button {
     color: white;
     border-radius: 8px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    margin: 12px;
+    width: 200px;
 }
 
 #clock {
@@ -25,4 +26,9 @@ button {
 
 #question {
     display: none;
+}
+
+p {
+    font-size: 25px;
+    margin: 5px;
 }

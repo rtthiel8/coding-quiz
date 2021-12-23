@@ -4,7 +4,7 @@ document.getElementById('questionEl');
 document.getElementById('answersEl');
 
 var quizEl = document.getElementById('quiz')
-var questionNumber = 0
+var questionNumber = -1
 
 // array qith quiz questions
 var quizQuestions = [
@@ -57,7 +57,17 @@ var quizQuestions = [
             4: "console.log",
         },
         correctAnswer: "console.log"
-    }
+    },
+    {
+        question: "Which of the following keywords does NOT create a variable?",
+        answers: {
+            1: "let",
+            2: "var",
+            3: "for",
+            4: "const",
+        },
+        correctAnswer: "for"
+    },
 ];
 
 function startTimer(duration, display) {
@@ -85,8 +95,9 @@ function startQuiz() {
 }
 
 function showQuestion(){
-    questionEl.innerText = "";
-    answersEl.innerText = "";
+    questionNumber++;
+    quizEl.innerText = "";
+
     
     var currentquestion = quizQuestions[questionNumber];
     var questionEl = document.createElement("p");
@@ -96,15 +107,15 @@ function showQuestion(){
     
     var temporaryIndex = 0;
     for (var answers of Object.values(currentquestion.answers)) {
-        console.log(answers);
-    
+        //console.log(answers);
+    for (var correctAnswer of Object.values(currentquestion.correctAnswer))    
+        console.log(correctAnswer);
     var answersEl = document.createElement("button");
     answersEl.id = temporaryIndex;
     document.getElementById('quiz').appendChild(answersEl)
     answersEl.innerText = answers;
     temporaryIndex++;
     answersEl.addEventListener("click", showQuestion);
-    questionNumber ++;
     }
 };
 
