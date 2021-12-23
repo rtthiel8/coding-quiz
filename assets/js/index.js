@@ -1,9 +1,12 @@
 document.getElementById('start').addEventListener('click', startQuiz);
 document.getElementById('start').addEventListener('click', showQuestion);
+document.getElementById('questionEl');
+document.getElementById('answersEl');
 
 var quizEl = document.getElementById('quiz')
 var questionNumber = 0
 
+// array qith quiz questions
 var quizQuestions = [
     {
         question: "Commonly used data types DO NOT include:",
@@ -82,13 +85,19 @@ function startQuiz() {
 }
 
 function showQuestion(){
-    var currentquestion = quizQuestions[questionNumber]
+    questionEl.innerText = "";
+    answersEl.innerText = "";
+    
+    var currentquestion = quizQuestions[questionNumber];
     var questionEl = document.createElement("p");
     questionEl.innerText = currentquestion.question;
+    
     document.getElementById('quiz').appendChild(questionEl);
-    var temporaryIndex = 0
+    
+    var temporaryIndex = 0;
     for (var answers of Object.values(currentquestion.answers)) {
         console.log(answers);
+    
     var answersEl = document.createElement("button");
     answersEl.id = temporaryIndex;
     document.getElementById('quiz').appendChild(answersEl)
@@ -96,7 +105,6 @@ function showQuestion(){
     temporaryIndex++;
     answersEl.addEventListener("click", showQuestion);
     questionNumber ++;
-    //document.getElementById("answersEl").style.display = 'none';
     }
 };
 
