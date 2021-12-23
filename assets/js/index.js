@@ -2,10 +2,12 @@ document.getElementById('start').addEventListener('click', startQuiz);
 document.getElementById('start').addEventListener('click', showQuestion);
 document.getElementById('questionEl');
 document.getElementById('answersEl');
+var currentQuestion;
 
 var quizEl = document.getElementById('quiz')
 var questionNumber = -1
 var score = 0
+var timer = 60
 
 var quizQuestions = [
     {
@@ -39,7 +41,7 @@ var quizQuestions = [
         correctAnswer: "all of the above"
     },
     {
-        question: "String valuse must be enclosed within _______ when being assigned to variables.",
+        question: "String values must be enclosed within _______ when being assigned to variables.",
         answers: {
             1: "commas",
             2: "curly brackets",
@@ -69,16 +71,17 @@ var quizQuestions = [
         correctAnswer: "for"
     },
 ];
-console.log(quizQuestions);
 
-function startTimer(duration, display) {
-var timer = duration, seconds;
-setInterval(function () {
-    seconds = parseInt(timer % 60,10);
-    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+function startTimer( display) {
+
+    var timerId = setInterval(function () {
+    let seconds = parseInt(timer);
+    //seconds = seconds < 10 ? "0" + seconds : seconds;
     display.textContent = seconds;
-if (--timer < 0) {
-    timer = duration;
+    timer--
+    if(timer <= 0) {
+        clearInterval(timerId)
     }
     }, 1000);
 }
@@ -86,7 +89,7 @@ if (--timer < 0) {
 window.onload = function () {
     var oneMinute = 60,
         display = document.querySelector('#time');
-        startTimer(oneMinute, display);
+        startTimer(display);
 };
 
 
@@ -100,32 +103,35 @@ function showQuestion(){
     quizEl.innerText = "";
 
     
-    var currentQuestion = quizQuestions[questionNumber];
+    currentQuestion = quizQuestions[questionNumber];
     var questionEl = document.createElement("p");
     questionEl.innerText = currentQuestion.question;
     
     document.getElementById('quiz').appendChild(questionEl);
     
-    var temporaryIndex = 0;
+    var tempIndex = 0;
     for (var answers of Object.values(currentQuestion.answers)) {
         //console.log(answers);
-    for (var correctAnswer of Object.values(currentQuestion.correctAnswer))    
-        console.log(currentQuestion.correctAnswer);
+    //for (var correctAnswer of Object.values(currentQuestion.correctAnswer))    
+        //console.log(currentQuestion.correctAnswer);
     var answersEl = document.createElement("button");
-    answersEl.id = temporaryIndex;
+    answersEl.id = tempIndex;
     document.getElementById('quiz').appendChild(answersEl)
     answersEl.innerText = answers;
-    temporaryIndex++;
-    answersEl.addEventListener("click", showQuestion);
+    tempIndex++;
+    answersEl.addEventListener("click", checkAnswer);
     }
 };
 
-function checkAnswer() {
-    if (answersEl.innertext == currentQuestion.correctAnswer) {
-    score++;
+function checkAnswer(event) {
+    if (event.target.innerText == currentQuestion.correctAnswer) {
+        score++;
     } else {
-    timer = -10;
+        timer -=5 ;
     }
+    showQuestion()
 };
 
+//function saveScore()
 
+//variable = prompt
