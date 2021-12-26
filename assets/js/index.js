@@ -2,12 +2,14 @@ document.getElementById('start').addEventListener('click', startQuiz);
 document.getElementById('start').addEventListener('click', showQuestion);
 document.getElementById('questionEl');
 document.getElementById('answersEl');
-var currentQuestion;
 
+var currentQuestion;
 var quizEl = document.getElementById('quiz')
 var questionNumber = -1
 var score = 0
 var timer = 60
+var name = prompt
+
 
 var quizQuestions = [
     {
@@ -70,6 +72,32 @@ var quizQuestions = [
         },
         correctAnswer: "for"
     },
+    {
+        question: "Which of the following is NOT a type of loop used in JavaScript?",
+        answers: {
+            1: "while",
+            2: "after",
+            3: "for",
+            4: "for...of",
+        },
+        correctAnswer: "after"
+    },
+    {
+        question: "What is the name for a function passed as an argument to another function?",
+        answers: {
+            1: "return",
+            2: "break",
+            3: "invoke",
+            4: "callback",
+        },
+        correctAnswer: "callback"
+    },
+    {
+        question: "Game Over!",
+        answers: {
+            1: "Your Score was:" + score
+        }
+    }
 ];
 
 
@@ -77,7 +105,6 @@ function startTimer( display) {
 
     var timerId = setInterval(function () {
     let seconds = parseInt(timer);
-    //seconds = seconds < 10 ? "0" + seconds : seconds;
     display.textContent = seconds;
     timer--
     if(timer <= 0) {
@@ -129,9 +156,21 @@ function checkAnswer(event) {
     } else {
         timer -=5 ;
     }
-    showQuestion()
+    showQuestion();
+    endQuiz();
+    console.log(score);
+    //console.log(questionNumber)
+    //console.log(quizQuestions.length)
 };
 
-//function saveScore()
+function endQuiz() {
+    if (questionNumber === quizQuestions.length -1) {
+        prompt("The quiz has ended! Please enter your initials to save your score.");
+    }
+    if (timer <= 1) {
+        prompt("The quiz has ended! Please enter your initials to save your score.");
+    }
+}
 
-//variable = prompt
+
+
